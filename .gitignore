@@ -2,3 +2,8 @@
 node_modules/
 .DS_Store
 assets/icons/source-icon.png
+
+# Test artifacts
+playwright-report/
+test-results/
+coverage/

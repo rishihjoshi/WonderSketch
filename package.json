@@ -1,0 +1,22 @@
+{
+  "name": "wondersketch-ar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WonderSketch AR - offline-first PWA for AR drawing tracing",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:unit": "vitest run test/unit",
+    "test:integration": "vitest run test/integration",
+    "test:e2e": "playwright test",
+    "serve": "http-server -p 8080 -c-1 -s"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "dexie": "^3.2.4",
+    "fake-indexeddb": "^6.0.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^24.1.0",
+    "vitest": "^4.1.8"
+  }
+}
