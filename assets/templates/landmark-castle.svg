@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 190 V100 H60 V190"/>
+    <path d="M140 190 V100 H165 V190"/>
+    <path d="M75 190 V60 H125 V190"/>
+    <path d="M35 100 h6 v-8 h-6 Z M49 100 h6 v-8 h-6 Z M140 100 h6 v-8 h-6 Z M154 100 h6 v-8 h-6 Z M75 60 h8 v-10 h-8 Z M92 60 h8 v-10 h-8 Z M109 60 h8 v-10 h-8 Z"/>
+    <path d="M60 100 H75 M125 100 H140" stroke-width="1.5"/>
+    <path d="M95 60 v-15" stroke-width="1.5"/>
+    <path d="M95 45 h15 v8 h-15 Z"/>
+    <path d="M88 190 q12 -25 24 0" stroke-width="1.5"/>
+    <line x1="35" y1="100" x2="60" y2="100" stroke-width="0.6"/><line x1="35" y1="118" x2="60" y2="118" stroke-width="0.6"/><line x1="35" y1="136" x2="60" y2="136" stroke-width="0.6"/><line x1="35" y1="154" x2="60" y2="154" stroke-width="0.6"/><line x1="35" y1="172" x2="60" y2="172" stroke-width="0.6"/><line x1="35" y1="190" x2="60" y2="190" stroke-width="0.6"/>
+    <line x1="140" y1="100" x2="165" y2="100" stroke-width="0.6"/><line x1="140" y1="118" x2="165" y2="118" stroke-width="0.6"/><line x1="140" y1="136" x2="165" y2="136" stroke-width="0.6"/><line x1="140" y1="154" x2="165" y2="154" stroke-width="0.6"/><line x1="140" y1="172" x2="165" y2="172" stroke-width="0.6"/><line x1="140" y1="190" x2="165" y2="190" stroke-width="0.6"/>
+    <line x1="75" y1="60" x2="125" y2="60" stroke-width="0.6"/><line x1="75" y1="78.57142857142857" x2="125" y2="78.57142857142857" stroke-width="0.6"/><line x1="75" y1="97.14285714285714" x2="125" y2="97.14285714285714" stroke-width="0.6"/><line x1="75" y1="115.71428571428572" x2="125" y2="115.71428571428572" stroke-width="0.6"/><line x1="75" y1="134.28571428571428" x2="125" y2="134.28571428571428" stroke-width="0.6"/><line x1="75" y1="152.85714285714286" x2="125" y2="152.85714285714286" stroke-width="0.6"/><line x1="75" y1="171.42857142857144" x2="125" y2="171.42857142857144" stroke-width="0.6"/><line x1="75" y1="190" x2="125" y2="190" stroke-width="0.6"/>
+    <path d="M15 190 H185"/>
+  </g></svg>

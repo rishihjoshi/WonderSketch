@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 160 a80 50 0 0 1 160 0 Z"/>
+    <path d="M28 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M46 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M64 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M82 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M100 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M118 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M136 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M154 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/><path d="M172 160 v-30 a9 9 0 0 1 18 0 v30" stroke-width="1"/>
+    <path d="M28 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M46 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M64 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M82 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M100 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M118 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M136 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M154 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/><path d="M172 122 v-22 a9 9 0 0 1 18 0 v22" stroke-width="1"/>
+    <path d="M20 160 H180 M20 122 H180" stroke-width="1.5"/>
+    <path d="M10 190 H190"/>
+  </g></svg>

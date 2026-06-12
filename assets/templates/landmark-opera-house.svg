@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 170 Q60 80 100 100 Q70 130 50 170 Z"/>
+    <path d="M55 170 Q85 70 130 95 Q95 125 75 170 Z"/>
+    <path d="M85 170 Q115 65 160 92 Q120 122 100 170 Z"/>
+    <path d="M35 168 Q60 85 98 100" stroke-width="0.75"/><path d="M43 162 Q68 82 102 98" stroke-width="0.75"/><path d="M51 156 Q76 79 106 96" stroke-width="0.75"/><path d="M59 150 Q84 76 110 94" stroke-width="0.75"/><path d="M67 144 Q92 73 114 92" stroke-width="0.75"/>
+    <path d="M58 168 Q88 75 128 94" stroke-width="0.75"/><path d="M66 162 Q96 72 132 92" stroke-width="0.75"/><path d="M74 156 Q104 69 136 90" stroke-width="0.75"/><path d="M82 150 Q112 66 140 88" stroke-width="0.75"/><path d="M90 144 Q120 63 144 86" stroke-width="0.75"/>
+    <path d="M88 168 Q118 70 158 91" stroke-width="0.75"/><path d="M96 162 Q126 67 162 89" stroke-width="0.75"/><path d="M104 156 Q134 64 166 87" stroke-width="0.75"/><path d="M112 150 Q142 61 170 85" stroke-width="0.75"/><path d="M120 144 Q150 58 174 83" stroke-width="0.75"/>
+    <path d="M20 170 H180"/>
+    <line x1="20" y1="172" x2="180" y2="172" stroke-width="0.75"/><line x1="20" y1="178" x2="180" y2="178" stroke-width="0.75"/><line x1="20" y1="184" x2="180" y2="184" stroke-width="0.75"/><line x1="20" y1="190" x2="180" y2="190" stroke-width="0.75"/>
+  </g></svg>

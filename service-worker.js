@@ -1,4 +1,4 @@
-const CACHE_NAME = "wondersketch-v5";
+const CACHE_NAME = "wondersketch-v6";
 
 const PRECACHE_URLS = [
   "./",
@@ -65,6 +65,18 @@ const PRECACHE_URLS = [
   "./assets/templates/scenery-eiffel-detailed.svg",
   "./assets/templates/faces-girl-ponytail.svg",
   "./assets/templates/scenery-eiffel-ultra.svg",
+  "./assets/templates/landmark-bigben.svg",
+  "./assets/templates/landmark-statue-liberty.svg",
+  "./assets/templates/landmark-taj-mahal.svg",
+  "./assets/templates/landmark-golden-gate.svg",
+  "./assets/templates/landmark-pisa.svg",
+  "./assets/templates/landmark-burj-khalifa.svg",
+  "./assets/templates/landmark-opera-house.svg",
+  "./assets/templates/landmark-colosseum.svg",
+  "./assets/templates/landmark-pyramids.svg",
+  "./assets/templates/landmark-castle.svg",
+  "./assets/templates/landmark-lighthouse.svg",
+  "./assets/templates/landmark-windmill.svg",
 ];
 
 self.addEventListener("install", (event) => {

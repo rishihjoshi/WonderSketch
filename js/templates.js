@@ -9,6 +9,7 @@ export const CATEGORIES = [
   "Faces",
   "Scenery",
   "Fantasy",
+  "Landmarks",
 ];
 
 export const TEMPLATES = [
@@ -44,6 +45,18 @@ export const TEMPLATES = [
   { id: "scenery-eiffel-detailed", category: "Scenery", name: "Eiffel Tower (Detailed)", file: "scenery-eiffel-detailed.svg" },
   { id: "faces-girl-ponytail", category: "Faces", name: "Girl with Ponytail", file: "faces-girl-ponytail.svg" },
   { id: "scenery-eiffel-ultra", category: "Scenery", name: "Eiffel Tower (Ultra Detailed)", file: "scenery-eiffel-ultra.svg" },
+  { id: "landmark-bigben", category: "Landmarks", name: "Big Ben", file: "landmark-bigben.svg" },
+  { id: "landmark-statue-liberty", category: "Landmarks", name: "Statue of Liberty", file: "landmark-statue-liberty.svg" },
+  { id: "landmark-taj-mahal", category: "Landmarks", name: "Taj Mahal", file: "landmark-taj-mahal.svg" },
+  { id: "landmark-golden-gate", category: "Landmarks", name: "Golden Gate Bridge", file: "landmark-golden-gate.svg" },
+  { id: "landmark-pisa", category: "Landmarks", name: "Leaning Tower of Pisa", file: "landmark-pisa.svg" },
+  { id: "landmark-burj-khalifa", category: "Landmarks", name: "Burj Khalifa", file: "landmark-burj-khalifa.svg" },
+  { id: "landmark-opera-house", category: "Landmarks", name: "Sydney Opera House", file: "landmark-opera-house.svg" },
+  { id: "landmark-colosseum", category: "Landmarks", name: "Colosseum", file: "landmark-colosseum.svg" },
+  { id: "landmark-pyramids", category: "Landmarks", name: "Pyramids of Giza", file: "landmark-pyramids.svg" },
+  { id: "landmark-castle", category: "Landmarks", name: "Castle", file: "landmark-castle.svg" },
+  { id: "landmark-lighthouse", category: "Landmarks", name: "Lighthouse", file: "landmark-lighthouse.svg" },
+  { id: "landmark-windmill", category: "Landmarks", name: "Windmill", file: "landmark-windmill.svg" },
 ];
 
 export function getTemplateUrl(template) {
