@@ -17,7 +17,7 @@ test("opens the template library and loads a template as an overlay", async ({ p
   await page.getByRole("button", { name: "Templates" }).click();
   await expect(page.locator("aside.drawer.open h2")).toHaveText("Template Library");
 
-  await expect(page.locator(".template-card")).toHaveCount(25);
+  await expect(page.locator(".template-card")).toHaveCount(29);
 
   await page.getByRole("button", { name: "Animals" }).click();
   const animalCards = page.locator(".template-card");

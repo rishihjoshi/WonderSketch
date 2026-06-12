@@ -37,6 +37,10 @@ export const TEMPLATES = [
   { id: "fantasy-cupcake", category: "Fantasy", name: "Cupcake", file: "fantasy-cupcake.svg" },
   { id: "fantasy-heart", category: "Fantasy", name: "Heart", file: "fantasy-heart.svg" },
   { id: "fantasy-crown", category: "Fantasy", name: "Crown", file: "fantasy-crown.svg" },
+  { id: "faces-girl-front", category: "Faces", name: "Girl Portrait", file: "faces-girl-front.svg" },
+  { id: "faces-side-profile-detailed", category: "Faces", name: "Detailed Profile", file: "faces-side-profile-detailed.svg" },
+  { id: "faces-eye-study", category: "Faces", name: "Eye Study", file: "faces-eye-study.svg" },
+  { id: "faces-girl-pigtails", category: "Faces", name: "Girl with Pigtails", file: "faces-girl-pigtails.svg" },
 ];
 
 export function getTemplateUrl(template) {

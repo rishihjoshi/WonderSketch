@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="110" r="42"/>
+    <circle cx="48" cy="80" r="20"/>
+    <circle cx="152" cy="80" r="20"/>
+    <path d="M48 60 q-5 -15 8 -20"/>
+    <path d="M152 60 q5 -15 -8 -20"/>
+    <path d="M60 95 q-15 5 -12 -15"/>
+    <path d="M140 95 q15 5 12 -15"/>
+    <path d="M62 90 q5 -45 38 -45 q33 0 38 45"/>
+    <path d="M70 80 q30 -15 60 0" stroke-width="1.5"/>
+    <circle cx="82" cy="108" r="12"/>
+    <circle cx="82" cy="108" r="5" fill="#1a1a1a"/>
+    <circle cx="86" cy="104" r="2" fill="#ffffff" stroke-width="1"/>
+    <circle cx="118" cy="108" r="12"/>
+    <circle cx="118" cy="108" r="5" fill="#1a1a1a"/>
+    <circle cx="122" cy="104" r="2" fill="#ffffff" stroke-width="1"/>
+    <path d="M70 92 q12 -5 22 0"/>
+    <path d="M108 92 q10 -5 22 0"/>
+    <path d="M98 118 q2 6 4 6" stroke-width="1.5"/>
+    <path d="M85 138 q15 14 30 0"/>
+    <path d="M68 125 q-6 6 0 12" stroke-width="1.5"/>
+    <path d="M132 125 q6 6 0 12" stroke-width="1.5"/>
+  </g></svg>
