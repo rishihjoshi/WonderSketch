@@ -43,6 +43,7 @@ export const TEMPLATES = [
   { id: "faces-girl-pigtails", category: "Faces", name: "Girl with Pigtails", file: "faces-girl-pigtails.svg" },
   { id: "scenery-eiffel-detailed", category: "Scenery", name: "Eiffel Tower (Detailed)", file: "scenery-eiffel-detailed.svg" },
   { id: "faces-girl-ponytail", category: "Faces", name: "Girl with Ponytail", file: "faces-girl-ponytail.svg" },
+  { id: "scenery-eiffel-ultra", category: "Scenery", name: "Eiffel Tower (Ultra Detailed)", file: "scenery-eiffel-ultra.svg" },
 ];
 
 export function getTemplateUrl(template) {
