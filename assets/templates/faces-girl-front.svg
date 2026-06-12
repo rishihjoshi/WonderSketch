@@ -3,6 +3,7 @@
     <path d="M54 96 q-12 0 -10 18 q2 14 12 12"/>
     <path d="M146 96 q12 0 10 18 q-2 14 -12 12"/>
     <path d="M54 100 q-8 -55 46 -58 q54 3 46 58 q6 -40 -10 -60 q-18 -22 -36 -22 q-18 0 -36 22 q-16 20 -10 60Z"/>
+    <line x1="56" y1="22" x2="56" y2="56" stroke-width="0.5"/><line x1="64" y1="22" x2="64" y2="56" stroke-width="0.5"/><line x1="72" y1="22" x2="72" y2="56" stroke-width="0.5"/><line x1="80" y1="22" x2="80" y2="56" stroke-width="0.5"/><line x1="88" y1="22" x2="88" y2="56" stroke-width="0.5"/><line x1="96" y1="22" x2="96" y2="56" stroke-width="0.5"/><line x1="104" y1="22" x2="104" y2="56" stroke-width="0.5"/><line x1="112" y1="22" x2="112" y2="56" stroke-width="0.5"/><line x1="120" y1="22" x2="120" y2="56" stroke-width="0.5"/><line x1="128" y1="22" x2="128" y2="56" stroke-width="0.5"/><line x1="136" y1="22" x2="136" y2="56" stroke-width="0.5"/><line x1="144" y1="22" x2="144" y2="56" stroke-width="0.5"/>
     <path d="M40 100 q-15 42 0 88" stroke-width="1.5"/>
     <path d="M160 100 q15 42 0 88" stroke-width="1.5"/>
     <path d="M50 108 q-10 35 8 72" stroke-width="1.5"/>

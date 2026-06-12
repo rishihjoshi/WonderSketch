@@ -4,4 +4,7 @@
     <path d="M20 195 h160"/>
     <path d="M10 195 q15 -35 45 -25 q10 -20 35 -10 q5 -15 -20 -25" stroke-width="1.5"/>
     <path d="M190 195 q-15 -35 -45 -25 q-10 -20 -35 -10 q-5 -15 20 -25" stroke-width="1.5"/>
+    <path d="M150 35 q14 -7 26 0 q3 -7 13 -2" stroke-width="1.5"/>
+    <path d="M155 31 q20 -2 30 3" stroke-width="0.6"/>
+    <path d="M30 50 q5 -4 10 0 M45 62 q5 -4 10 0" stroke-width="1.5"/>
   </g></svg>

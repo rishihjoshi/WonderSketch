@@ -13,4 +13,5 @@
     <path d="M145 105 l12 5" stroke-width="1.5"/>
     <path d="M50 125 q40 18 80 0" stroke-width="1.5"/>
     <path d="M45 88 q45 -20 90 -3" stroke-width="1.5"/>
+    <line x1="62" y1="130" x2="118" y2="130" stroke-width="0.5"/><line x1="62" y1="132.5" x2="118" y2="132.5" stroke-width="0.5"/><line x1="62" y1="135" x2="118" y2="135" stroke-width="0.5"/><line x1="62" y1="137.5" x2="118" y2="137.5" stroke-width="0.5"/><line x1="62" y1="140" x2="118" y2="140" stroke-width="0.5"/>
   </g></svg>
