@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>WonderSketch AR</title>
+  <meta name="description" content="AR drawing, tracing and learn-to-draw studio for tablets." />
+  <meta name="theme-color" content="#121018" />
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="WonderSketch" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/icons/icon-72.png" alt="" class="brand-icon" />
+        <span class="brand-name">WonderSketch <small>AR</small></span>
+      </div>
+      <nav class="top-actions">
+        <button class="icon-btn" data-panel="templates" title="Template Library" aria-label="Templates">🖼️</button>
+        <button class="icon-btn" data-panel="learn" title="Learn to Draw" aria-label="Learn to draw">🎓</button>
+        <button class="icon-btn" data-panel="challenges" title="Daily Challenges" aria-label="Daily challenges">🏆</button>
+        <button class="icon-btn" data-panel="progress" title="Progress" aria-label="Progress">📈</button>
+        <button class="icon-btn" data-panel="settings" title="Settings" aria-label="Settings">⚙️</button>
+      </nav>
+    </header>
+
+    <!-- Main AR Stage -->
+    <main class="stage" id="stage">
+      <video id="camera-feed" autoplay playsinline muted></video>
+      <canvas id="overlay-canvas"></canvas>
+      <canvas id="guide-canvas"></canvas>
+
+      <div id="camera-placeholder" class="camera-placeholder">
+        <p>📷 Camera access is needed for AR tracing.</p>
+        <button id="start-camera-btn" class="primary-btn">Enable Camera</button>
+        <p class="hint">You can still import images and use guides without the camera.</p>
+      </div>
+
+      <div id="stage-toast" class="toast" hidden></div>
+    </main>
+
+    <!-- Bottom toolbar -->
+    <footer class="toolbar">
+      <div class="tool-group">
+        <label class="tool-btn file-btn" title="Import image">
+          🖼️
+          <input type="file" id="import-image" accept="image/png,image/jpeg,image/webp" hidden />
+        </label>
+        <button class="tool-btn" id="btn-mirror-h" title="Mirror horizontally">⇋</button>
+        <button class="tool-btn" id="btn-mirror-v" title="Mirror vertically">⇵</button>
+        <button class="tool-btn" id="btn-lock" title="Lock overlay" aria-pressed="false">🔒</button>
+        <button class="tool-btn" id="btn-reset" title="Reset overlay">⟲</button>
+      </div>
+
+      <div class="tool-group">
+        <label class="slider-label">Opacity
+          <input type="range" id="opacity-slider" min="0" max="100" value="60" />
+        </label>
+        <label class="slider-label">Rotate
+          <input type="range" id="rotate-slider" min="-180" max="180" value="0" />
+        </label>
+      </div>
+
+      <div class="tool-group">
+        <label class="select-label">Grid
+          <select id="grid-select">
+            <option value="none">Off</option>
+            <option value="3x3">3 × 3</option>
+            <option value="4x4">4 × 4</option>
+            <option value="6x6">6 × 6</option>
+          </select>
+        </label>
+        <label class="select-label">Perspective
+          <select id="perspective-select">
+            <option value="none">Off</option>
+            <option value="1pt">1-Point</option>
+            <option value="2pt">2-Point</option>
+            <option value="3pt">3-Point</option>
+            <option value="iso">Isometric</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="tool-group">
+        <button class="tool-btn" id="btn-calligraphy" title="Calligraphy text overlay">✍️</button>
+        <button class="tool-btn" id="btn-camera-toggle" title="Switch camera">🔄</button>
+        <button class="tool-btn" id="btn-wakelock" title="Keep screen awake" aria-pressed="false">☀️</button>
+        <button class="tool-btn" id="btn-snapshot" title="Export practice sheet">💾</button>
+      </div>
+    </footer>
+
+    <!-- Side panels (drawers) -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+    <aside class="drawer" id="panel-templates" data-panel="templates">
+      <div class="drawer-header"><h2>Template Library</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body">
+        <div class="category-tabs" id="template-categories"></div>
+        <div class="template-grid" id="template-grid"></div>
+      </div>
+    </aside>
+
+    <aside class="drawer" id="panel-learn" data-panel="learn">
+      <div class="drawer-header"><h2>Learn to Draw</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body" id="learn-body">
+        <div id="learn-list"></div>
+        <div id="learn-detail" hidden>
+          <button class="link-btn" id="learn-back">← Back to lessons</button>
+          <h3 id="learn-title"></h3>
+          <p id="learn-step-text"></p>
+          <div class="learn-step-nav">
+            <button class="tool-btn" id="learn-prev">◀ Prev</button>
+            <span id="learn-step-counter"></span>
+            <button class="tool-btn" id="learn-next">Next ▶</button>
+          </div>
+          <button class="primary-btn" id="learn-use">Use as Overlay</button>
+          <button class="primary-btn" id="learn-complete">Mark Lesson Complete</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="drawer" id="panel-challenges" data-panel="challenges">
+      <div class="drawer-header"><h2>Daily Challenges</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body" id="challenges-body">
+        <div class="challenge-card" id="today-challenge"></div>
+        <h3>Streak</h3>
+        <p id="streak-display"></p>
+        <h3>History</h3>
+        <ul id="challenge-history"></ul>
+      </div>
+    </aside>
+
+    <aside class="drawer" id="panel-progress" data-panel="progress">
+      <div class="drawer-header"><h2>Your Progress</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body" id="progress-body">
+        <div class="stat-grid">
+          <div class="stat-card"><span class="stat-value" id="stat-streak">0</span><span class="stat-label">Day streak</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-lessons">0</span><span class="stat-label">Lessons done</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-challenges">0</span><span class="stat-label">Challenges done</span></div>
+          <div class="stat-card"><span class="stat-value" id="stat-favorites">0</span><span class="stat-label">Favorites</span></div>
+        </div>
+        <h3>Favorites</h3>
+        <div class="template-grid" id="favorites-grid"></div>
+      </div>
+    </aside>
+
+    <aside class="drawer" id="panel-settings" data-panel="settings">
+      <div class="drawer-header"><h2>Settings</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body">
+        <div class="settings-row">
+          <span>Keep screen awake</span>
+          <input type="checkbox" id="setting-wakelock" />
+        </div>
+        <div class="settings-row">
+          <span>Mirror front camera</span>
+          <input type="checkbox" id="setting-mirror-front" />
+        </div>
+        <div class="settings-row">
+          <span>App version</span>
+          <span id="app-version">1.0.0</span>
+        </div>
+        <button class="primary-btn danger" id="btn-clear-data">Clear All Local Data</button>
+        <p class="hint">All your data (favorites, progress, settings) is stored only on this device.</p>
+      </div>
+    </aside>
+
+    <!-- Calligraphy panel -->
+    <aside class="drawer" id="panel-calligraphy" data-panel="calligraphy">
+      <div class="drawer-header"><h2>Calligraphy Tracing</h2><button class="close-btn" data-close>✕</button></div>
+      <div class="drawer-body">
+        <label class="field-label">Text
+          <textarea id="calligraphy-text" rows="3" placeholder="Type text to trace...">WonderSketch</textarea>
+        </label>
+        <label class="field-label">Font
+          <select id="calligraphy-font">
+            <option value="'Brush Script MT', cursive">Brush Script</option>
+            <option value="'Georgia', serif">Elegant Serif</option>
+            <option value="'Segoe Script', cursive">Script</option>
+            <option value="'Arial', sans-serif">Sans Serif</option>
+            <option value="'Courier New', monospace">Monospace</option>
+          </select>
+        </label>
+        <label class="field-label">Size
+          <input type="range" id="calligraphy-size" min="20" max="200" value="80" />
+        </label>
+        <button class="primary-btn" id="calligraphy-apply">Apply to Canvas</button>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="libs/fabric.min.js"></script>
+  <script src="libs/dexie.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
