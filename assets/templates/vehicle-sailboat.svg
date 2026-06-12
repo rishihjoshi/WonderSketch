@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 150 Q35 175 100 178 Q165 175 170 150 Z"/>
+    <path d="M100 150 V40" stroke-width="1.5"/>
+    <path d="M100 45 Q60 60 60 110 Q80 130 100 122 Z"/>
+    <path d="M100 56.0 L89.9 56.0" stroke-width="0.75"/><path d="M100 67.0 L80.5 67.0" stroke-width="0.75"/><path d="M100 78.0 L72.5 78.0" stroke-width="0.75"/><path d="M100 89.0 L66.5 89.0" stroke-width="0.75"/><path d="M100 100.0 L63.0 100.0" stroke-width="0.75"/><path d="M100 111.0 L62.0 111.0" stroke-width="0.75"/>
+    <path d="M104 60 Q138 75 130 120 Q116 132 104 122 Z"/>
+    <path d="M104 70.3 L112.7 70.3" stroke-width="0.75"/><path d="M104 80.7 L120.5 80.7" stroke-width="0.75"/><path d="M104 91.0 L126.7 91.0" stroke-width="0.75"/><path d="M104 101.3 L130.6 101.3" stroke-width="0.75"/><path d="M104 111.7 L132.0 111.7" stroke-width="0.75"/>
+    <path d="M100 150 q5 -2 10 0" stroke-width="1.5"/>
+    <path d="M10 165 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0" stroke-width="1"/>
+    <path d="M10 178 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0 q15 -8 30 0" stroke-width="1"/>
+  </g></svg>

@@ -57,6 +57,15 @@ export const TEMPLATES = [
   { id: "landmark-castle", category: "Landmarks", name: "Castle", file: "landmark-castle.svg" },
   { id: "landmark-lighthouse", category: "Landmarks", name: "Lighthouse", file: "landmark-lighthouse.svg" },
   { id: "landmark-windmill", category: "Landmarks", name: "Windmill", file: "landmark-windmill.svg" },
+  { id: "animal-cat-ultra", category: "Animals", name: "Cat (Ultra Detailed)", file: "animal-cat-ultra.svg" },
+  { id: "animal-dog-ultra", category: "Animals", name: "Dog (Ultra Detailed)", file: "animal-dog-ultra.svg" },
+  { id: "animal-horse-ultra", category: "Animals", name: "Horse (Ultra Detailed)", file: "animal-horse-ultra.svg" },
+  { id: "vehicle-car-ultra", category: "Vehicles", name: "Car (Ultra Detailed)", file: "vehicle-car-ultra.svg" },
+  { id: "vehicle-airplane", category: "Vehicles", name: "Airplane", file: "vehicle-airplane.svg" },
+  { id: "vehicle-sailboat", category: "Vehicles", name: "Sailboat", file: "vehicle-sailboat.svg" },
+  { id: "fantasy-dragon-ultra", category: "Fantasy", name: "Dragon (Ultra Detailed)", file: "fantasy-dragon-ultra.svg" },
+  { id: "nature-tree-ultra", category: "Scenery", name: "Tree (Ultra Detailed)", file: "nature-tree-ultra.svg" },
+  { id: "nature-mountain-ultra", category: "Scenery", name: "Mountain Range (Ultra Detailed)", file: "nature-mountain-ultra.svg" },
 ];
 
 export function getTemplateUrl(template) {

@@ -17,11 +17,11 @@ test("opens the template library and loads a template as an overlay", async ({ p
   await page.getByRole("button", { name: "Templates" }).click();
   await expect(page.locator("aside.drawer.open h2")).toHaveText("Template Library");
 
-  await expect(page.locator(".template-card")).toHaveCount(44);
+  await expect(page.locator(".template-card")).toHaveCount(53);
 
   await page.getByRole("button", { name: "Animals" }).click();
   const animalCards = page.locator(".template-card");
-  await expect(animalCards).toHaveCount(2);
+  await expect(animalCards).toHaveCount(5);
 
   await animalCards.first().click();
   await expect(page.locator("#stage-toast")).toBeVisible();
