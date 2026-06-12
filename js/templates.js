@@ -66,6 +66,15 @@ export const TEMPLATES = [
   { id: "fantasy-dragon-ultra", category: "Fantasy", name: "Dragon (Ultra Detailed)", file: "fantasy-dragon-ultra.svg" },
   { id: "nature-tree-ultra", category: "Scenery", name: "Tree (Ultra Detailed)", file: "nature-tree-ultra.svg" },
   { id: "nature-mountain-ultra", category: "Scenery", name: "Mountain Range (Ultra Detailed)", file: "nature-mountain-ultra.svg" },
+  { id: "animal-owl-ultra", category: "Animals", name: "Owl (Ultra Detailed)", file: "animal-owl-ultra.svg" },
+  { id: "animal-elephant-ultra", category: "Animals", name: "Elephant (Ultra Detailed)", file: "animal-elephant-ultra.svg" },
+  { id: "flower-rose-ultra", category: "Flowers", name: "Rose (Ultra Detailed)", file: "flower-rose-ultra.svg" },
+  { id: "flower-orchid", category: "Flowers", name: "Orchid", file: "flower-orchid.svg" },
+  { id: "vehicle-train", category: "Vehicles", name: "Steam Train", file: "vehicle-train.svg" },
+  { id: "vehicle-motorcycle-ultra", category: "Vehicles", name: "Motorcycle (Ultra Detailed)", file: "vehicle-motorcycle-ultra.svg" },
+  { id: "fantasy-mermaid", category: "Fantasy", name: "Mermaid", file: "fantasy-mermaid.svg" },
+  { id: "fantasy-phoenix", category: "Fantasy", name: "Phoenix", file: "fantasy-phoenix.svg" },
+  { id: "kids-robot", category: "Kids", name: "Robot", file: "kids-robot.svg" },
 ];
 
 export function getTemplateUrl(template) {

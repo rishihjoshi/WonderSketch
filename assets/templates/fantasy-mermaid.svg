@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="75" cy="55" r="14"/>
+    <path d="M62 50 Q40 60 45 90 Q55 95 60 75" stroke-width="1.5"/>
+    <path d="M88 50 Q105 55 100 75" stroke-width="1.5"/>
+    <path d="M64 48 Q68 42 75 44 M82 44 Q88 42 92 48" stroke-width="1.5"/>
+    <path d="M65 68 Q55 85 62 105 Q75 115 90 105 Q95 88 85 70 Q75 64 65 68 Z"/>
+    <path d="M90 100 Q120 95 145 112 Q170 130 165 158 Q150 168 132 152 Q118 168 100 158 Q108 132 96 110 Q92 104 90 100 Z"/>
+    <path d="M90 112 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M105.75 112 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M121.5 112 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M137.25 112 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M153 112 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M95 132 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M110.75 132 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M126.5 132 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M142.25 132 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M158 132 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M90 152 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M105.75 152 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M121.5 152 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M137.25 152 a5 5 0 0 1 10 0" stroke-width="0.75"/><path d="M153 152 a5 5 0 0 1 10 0" stroke-width="0.75"/>
+    <path d="M165 158 Q185 150 195 165 Q188 180 172 175 Q168 165 165 158 Z"/>
+    <path d="M170 160 L182 172" stroke-width="0.75"/><path d="M176 163 L186 175" stroke-width="0.75"/><path d="M182 166 L190 178" stroke-width="0.75"/><path d="M188 169 L194 181" stroke-width="0.75"/>
+    <path d="M20 178 Q60 168 100 178 Q140 165 190 178 V190 H20 Z"/>
+    <line x1="15" y1="182" x2="195" y2="182" stroke-width="0.6"/><line x1="15" y1="185" x2="195" y2="185" stroke-width="0.6"/><line x1="15" y1="188" x2="195" y2="188" stroke-width="0.6"/>
+  </g></svg>
