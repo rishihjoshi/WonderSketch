@@ -7,6 +7,8 @@ export const CATEGORIES = [
   "Tattoo",
   "Kids",
   "Faces",
+  "Scenery",
+  "Fantasy",
 ];
 
 export const TEMPLATES = [
@@ -25,6 +27,16 @@ export const TEMPLATES = [
   { id: "kids-house", category: "Kids", name: "House", file: "kids-house.svg" },
   { id: "faces-portrait", category: "Faces", name: "Portrait", file: "faces-portrait.svg" },
   { id: "faces-profile", category: "Faces", name: "Profile", file: "faces-profile.svg" },
+  { id: "flower-sunflower", category: "Flowers", name: "Sunflower", file: "flower-sunflower.svg" },
+  { id: "flower-tulip", category: "Flowers", name: "Tulip", file: "flower-tulip.svg" },
+  { id: "scenery-eiffel", category: "Scenery", name: "Eiffel Tower", file: "scenery-eiffel.svg" },
+  { id: "scenery-sunset", category: "Scenery", name: "Sunset", file: "scenery-sunset.svg" },
+  { id: "fantasy-unicorn", category: "Fantasy", name: "Unicorn", file: "fantasy-unicorn.svg" },
+  { id: "fantasy-butterfly", category: "Fantasy", name: "Butterfly", file: "fantasy-butterfly.svg" },
+  { id: "fantasy-rainbow", category: "Fantasy", name: "Rainbow", file: "fantasy-rainbow.svg" },
+  { id: "fantasy-cupcake", category: "Fantasy", name: "Cupcake", file: "fantasy-cupcake.svg" },
+  { id: "fantasy-heart", category: "Fantasy", name: "Heart", file: "fantasy-heart.svg" },
+  { id: "fantasy-crown", category: "Fantasy", name: "Crown", file: "fantasy-crown.svg" },
 ];
 
 export function getTemplateUrl(template) {
