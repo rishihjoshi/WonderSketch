@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <ellipse cx="100" cy="105" rx="50" ry="60"/>
-    <path d="M55 80 q45 -40 90 0"/>
+    <path d="M48 75 Q50 30 100 28 Q150 30 152 75 Q130 50 100 48 Q70 50 48 75 Z"/>
+    <line x1="55" y1="28" x2="55" y2="60" stroke-width="0.6"/><line x1="66.25" y1="28" x2="66.25" y2="60" stroke-width="0.6"/><line x1="77.5" y1="28" x2="77.5" y2="60" stroke-width="0.6"/><line x1="88.75" y1="28" x2="88.75" y2="60" stroke-width="0.6"/><line x1="100" y1="28" x2="100" y2="60" stroke-width="0.6"/><line x1="111.25" y1="28" x2="111.25" y2="60" stroke-width="0.6"/><line x1="122.5" y1="28" x2="122.5" y2="60" stroke-width="0.6"/><line x1="133.75" y1="28" x2="133.75" y2="60" stroke-width="0.6"/><line x1="145" y1="28" x2="145" y2="60" stroke-width="0.6"/>
+    <path d="M68 78 q12 -8 24 0" stroke-width="1.5"/>
+    <path d="M108 78 q12 -8 24 0" stroke-width="1.5"/>
     <circle cx="80" cy="100" r="5" fill="#1a1a1a"/>
     <circle cx="120" cy="100" r="5" fill="#1a1a1a"/>
     <path d="M95 110 q5 10 0 18 q5 4 10 0"/>
     <path d="M82 145 q18 14 36 0"/>
-    <path d="M55 150 q-10 10 -5 25"/>
-    <path d="M145 150 q10 10 5 25"/>
+    <path d="M50 95 q-10 5 -8 18 q2 10 12 8" stroke-width="1.5"/>
+    <path d="M150 95 q10 5 8 18 q-2 10 -12 8" stroke-width="1.5"/>
+    <line x1="60" y1="118" x2="78" y2="118" stroke-width="0.5"/><line x1="60" y1="121.33333333333333" x2="78" y2="121.33333333333333" stroke-width="0.5"/><line x1="60" y1="124.66666666666667" x2="78" y2="124.66666666666667" stroke-width="0.5"/><line x1="60" y1="128" x2="78" y2="128" stroke-width="0.5"/>
+    <line x1="122" y1="118" x2="140" y2="118" stroke-width="0.5"/><line x1="122" y1="121.33333333333333" x2="140" y2="121.33333333333333" stroke-width="0.5"/><line x1="122" y1="124.66666666666667" x2="140" y2="124.66666666666667" stroke-width="0.5"/><line x1="122" y1="128" x2="140" y2="128" stroke-width="0.5"/>
   </g></svg>

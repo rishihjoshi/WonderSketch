@@ -1,8 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="55" cy="140" r="28"/>
     <circle cx="145" cy="140" r="28"/>
+    <line x1="55" y1="140" x2="81.0" y2="140.0" stroke-width="0.6"/><line x1="55" y1="140" x2="73.4" y2="158.4" stroke-width="0.6"/><line x1="55" y1="140" x2="55.0" y2="166.0" stroke-width="0.6"/><line x1="55" y1="140" x2="36.6" y2="158.4" stroke-width="0.6"/><line x1="55" y1="140" x2="29.0" y2="140.0" stroke-width="0.6"/><line x1="55" y1="140" x2="36.6" y2="121.6" stroke-width="0.6"/><line x1="55" y1="140" x2="55.0" y2="114.0" stroke-width="0.6"/><line x1="55" y1="140" x2="73.4" y2="121.6" stroke-width="0.6"/>
+    <line x1="145" y1="140" x2="171.0" y2="140.0" stroke-width="0.6"/><line x1="145" y1="140" x2="163.4" y2="158.4" stroke-width="0.6"/><line x1="145" y1="140" x2="145.0" y2="166.0" stroke-width="0.6"/><line x1="145" y1="140" x2="126.6" y2="158.4" stroke-width="0.6"/><line x1="145" y1="140" x2="119.0" y2="140.0" stroke-width="0.6"/><line x1="145" y1="140" x2="126.6" y2="121.6" stroke-width="0.6"/><line x1="145" y1="140" x2="145.0" y2="114.0" stroke-width="0.6"/><line x1="145" y1="140" x2="163.4" y2="121.6" stroke-width="0.6"/>
+    <circle cx="55" cy="140" r="5"/>
+    <circle cx="145" cy="140" r="5"/>
     <path d="M55 140 l40 -55 h35"/>
     <path d="M95 85 l-20 55 h70 l-25 -35"/>
     <path d="M95 85 h-15"/>
     <path d="M145 140 l-25 -35 l25 -10"/>
+    <ellipse cx="95" cy="80" rx="14" ry="6"/>
+    <path d="M81 78 h28" stroke-width="0.6"/>
   </g></svg>

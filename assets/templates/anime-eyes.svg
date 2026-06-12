@@ -1,10 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M30 100 q40 -45 80 0 q-40 45 -80 0Z"/>
-    <circle cx="70" cy="100" r="18"/>
-    <circle cx="70" cy="100" r="6" fill="#1a1a1a"/>
-    <path d="M90 100 q40 -45 80 0 q-40 45 -80 0Z"/>
-    <circle cx="130" cy="100" r="18"/>
-    <circle cx="130" cy="100" r="6" fill="#1a1a1a"/>
-    <path d="M20 70 q40 -30 70 -10"/>
-    <path d="M110 60 q40 -20 70 10"/>
+    <path d="M25 100 Q65 38 115 100 Q65 148 25 100Z"/>
+    <circle cx="62" cy="100" r="22"/>
+    <circle cx="62" cy="100" r="9" fill="#1a1a1a"/>
+    <circle cx="55" cy="92" r="3" fill="#ffffff" stroke-width="1"/>
+    <path d="M30 76 q-4 -10 2 -16" stroke-width="1"/><path d="M38 76 q-4 -10 2 -16" stroke-width="1"/><path d="M46 76 q-4 -10 2 -16" stroke-width="1"/><path d="M54 76 q-4 -10 2 -16" stroke-width="1"/><path d="M62 76 q-4 -10 2 -16" stroke-width="1"/>
+    <path d="M85 100 Q125 38 175 100 Q125 148 85 100Z"/>
+    <circle cx="138" cy="100" r="22"/>
+    <circle cx="138" cy="100" r="9" fill="#1a1a1a"/>
+    <circle cx="131" cy="92" r="3" fill="#ffffff" stroke-width="1"/>
+    <path d="M106 76 q-4 -10 2 -16" stroke-width="1"/><path d="M114 76 q-4 -10 2 -16" stroke-width="1"/><path d="M122 76 q-4 -10 2 -16" stroke-width="1"/><path d="M130 76 q-4 -10 2 -16" stroke-width="1"/><path d="M138 76 q-4 -10 2 -16" stroke-width="1"/>
+    <path d="M15 62 q45 -35 80 -8"/>
+    <path d="M105 54 q45 -27 80 8"/>
+    <line x1="30" y1="122" x2="90" y2="122" stroke-width="0.5"/><line x1="30" y1="125.33333333333333" x2="90" y2="125.33333333333333" stroke-width="0.5"/><line x1="30" y1="128.66666666666666" x2="90" y2="128.66666666666666" stroke-width="0.5"/><line x1="30" y1="132" x2="90" y2="132" stroke-width="0.5"/>
+    <line x1="110" y1="122" x2="170" y2="122" stroke-width="0.5"/><line x1="110" y1="125.33333333333333" x2="170" y2="125.33333333333333" stroke-width="0.5"/><line x1="110" y1="128.66666666666666" x2="170" y2="128.66666666666666" stroke-width="0.5"/><line x1="110" y1="132" x2="170" y2="132" stroke-width="0.5"/>
   </g></svg>

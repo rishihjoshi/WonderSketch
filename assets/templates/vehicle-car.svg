@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M30 130 q0 -25 25 -25 h90 q25 0 25 25 v10 h-140Z"/>
     <path d="M55 105 l15 -25 h55 l20 25Z"/>
+    <path d="M100 80 v25" stroke-width="1.5"/>
     <circle cx="65" cy="140" r="14"/>
+    <circle cx="65" cy="140" r="5"/>
+    <path d="M65 130 v20 M55 140 h20 M58 133 l14 14 M72 133 l-14 14" stroke-width="0.6"/>
     <circle cx="140" cy="140" r="14"/>
+    <circle cx="140" cy="140" r="5"/>
+    <path d="M140 130 v20 M130 140 h20 M133 133 l14 14 M147 133 l-14 14" stroke-width="0.6"/>
     <path d="M40 105 h120"/>
+    <circle cx="38" cy="118" r="3"/>
+    <circle cx="162" cy="118" r="3"/>
+    <line x1="35" y1="110" x2="165" y2="110" stroke-width="0.5"/><line x1="35" y1="113.6" x2="165" y2="113.6" stroke-width="0.5"/><line x1="35" y1="117.2" x2="165" y2="117.2" stroke-width="0.5"/><line x1="35" y1="120.8" x2="165" y2="120.8" stroke-width="0.5"/><line x1="35" y1="124.4" x2="165" y2="124.4" stroke-width="0.5"/><line x1="35" y1="128" x2="165" y2="128" stroke-width="0.5"/>
   </g></svg>
