@@ -1,4 +1,4 @@
-const CACHE_NAME = "wondersketch-v3";
+const CACHE_NAME = "wondersketch-v4";
 
 const PRECACHE_URLS = [
   "./",
@@ -62,6 +62,8 @@ const PRECACHE_URLS = [
   "./assets/templates/faces-side-profile-detailed.svg",
   "./assets/templates/faces-eye-study.svg",
   "./assets/templates/faces-girl-pigtails.svg",
+  "./assets/templates/scenery-eiffel-detailed.svg",
+  "./assets/templates/faces-girl-ponytail.svg",
 ];
 
 self.addEventListener("install", (event) => {
