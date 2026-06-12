@@ -71,7 +71,3 @@ export const LESSONS = [
     ],
   },
 ];
-
-export function getLessonById(id) {
-  return LESSONS.find((l) => l.id === id);
-}

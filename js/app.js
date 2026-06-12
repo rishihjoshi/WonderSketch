@@ -4,7 +4,7 @@ import { drawGrid } from "./grid.js";
 import { drawPerspective } from "./perspective.js";
 import { renderCalligraphyImage } from "./calligraphy.js";
 import { CATEGORIES, getTemplatesByCategory, getTemplateUrl, getTemplateById } from "./templates.js";
-import { LESSONS, getLessonById } from "./learn.js";
+import { LESSONS } from "./learn.js";
 import { getTodaysChallenge, computeStreak } from "./challenges.js";
 import { getSetting, setSetting, todayString } from "./storage.js";
 import * as wakelock from "./wakelock.js";
