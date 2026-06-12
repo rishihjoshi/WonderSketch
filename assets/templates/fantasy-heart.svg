@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M100 172 C35 122 25 70 62 50 C88 36 100 58 100 72 C100 58 112 36 138 50 C175 70 165 122 100 172 Z"/>
+    <path d="M75 65 Q65 90 85 110" stroke-width="1"/>
+    <path d="M125 65 Q135 90 115 110" stroke-width="1"/>
+    <line x1="50" y1="100" x2="90" y2="100" stroke-width="0.5"/><line x1="50" y1="110" x2="90" y2="110" stroke-width="0.5"/><line x1="50" y1="120" x2="90" y2="120" stroke-width="0.5"/><line x1="50" y1="130" x2="90" y2="130" stroke-width="0.5"/><line x1="50" y1="140" x2="90" y2="140" stroke-width="0.5"/><line x1="50" y1="150" x2="90" y2="150" stroke-width="0.5"/>
+    <line x1="110" y1="100" x2="150" y2="100" stroke-width="0.5"/><line x1="110" y1="110" x2="150" y2="110" stroke-width="0.5"/><line x1="110" y1="120" x2="150" y2="120" stroke-width="0.5"/><line x1="110" y1="130" x2="150" y2="130" stroke-width="0.5"/><line x1="110" y1="140" x2="150" y2="140" stroke-width="0.5"/><line x1="110" y1="150" x2="150" y2="150" stroke-width="0.5"/>
     <path d="M138 48 L144 36 L150 48 L162 54 L150 60 L144 72 L138 60 L126 54 Z"/>
+    <circle cx="55" cy="35" r="2" fill="#1a1a1a"/>
+    <circle cx="165" cy="100" r="2.5" fill="#1a1a1a"/>
   </g></svg>

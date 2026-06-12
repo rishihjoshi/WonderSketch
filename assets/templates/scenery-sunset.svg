@@ -1,12 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" fill="#ffffff"/><g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 120 H180"/>
+    <path d="M15 120 H185"/>
     <circle cx="100" cy="120" r="38"/>
-    <path d="M100 65 V52"/>
-    <path d="M58 82 L48 70"/>
-    <path d="M142 82 L152 70"/>
-    <path d="M30 105 H18"/>
-    <path d="M170 105 H182"/>
-    <path d="M35 142 H165"/>
-    <path d="M45 158 H155"/>
-    <path d="M55 174 H145"/>
+    <path d="M100 65 V50 M100 175 V190" stroke-width="1.5"/>
+    <path d="M58 82 L46 68 M142 82 L154 68" stroke-width="1.5"/>
+    <path d="M30 105 H14 M170 105 H186" stroke-width="1.5"/>
+    <path d="M40 92 L28 84 M160 92 L172 84" stroke-width="1.5"/>
+    <line x1="18" y1="124" x2="55" y2="124" stroke-width="0.5"/><line x1="18" y1="134.66666666666666" x2="55" y2="134.66666666666666" stroke-width="0.5"/><line x1="18" y1="145.33333333333334" x2="55" y2="145.33333333333334" stroke-width="0.5"/><line x1="18" y1="156" x2="55" y2="156" stroke-width="0.5"/><line x1="18" y1="166.66666666666666" x2="55" y2="166.66666666666666" stroke-width="0.5"/><line x1="18" y1="177.33333333333334" x2="55" y2="177.33333333333334" stroke-width="0.5"/><line x1="18" y1="188" x2="55" y2="188" stroke-width="0.5"/>
+    <line x1="145" y1="124" x2="182" y2="124" stroke-width="0.5"/><line x1="145" y1="134.66666666666666" x2="182" y2="134.66666666666666" stroke-width="0.5"/><line x1="145" y1="145.33333333333334" x2="182" y2="145.33333333333334" stroke-width="0.5"/><line x1="145" y1="156" x2="182" y2="156" stroke-width="0.5"/><line x1="145" y1="166.66666666666666" x2="182" y2="166.66666666666666" stroke-width="0.5"/><line x1="145" y1="177.33333333333334" x2="182" y2="177.33333333333334" stroke-width="0.5"/><line x1="145" y1="188" x2="182" y2="188" stroke-width="0.5"/>
+    <path d="M35 48 q-12 -8 4 -14 q4 -9 16 -2 q12 -5 16 7 q11 2 5 11Z"/>
+    <path d="M44 44 q18 -2 26 4" stroke-width="0.6"/>
+    <path d="M148 38 L158 34 L153 42 L163 40 L157 48Z" stroke-width="1.2"/>
+    <path d="M70 28 q6 -4 12 0 M118 24 q6 -4 12 0" stroke-width="1.5"/>
   </g></svg>
