@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { CATEGORIES, TEMPLATES, getTemplateUrl, getTemplatesByCategory, getTemplateById } from "../../js/templates.js";
+import { CATEGORIES, DIFFICULTIES, TEMPLATES, getTemplateUrl, getTemplatesByCategory, filterTemplates, getTemplateById } from "../../js/templates.js";
 
 describe("templates", () => {
   it("every template belongs to a known category", () => {
@@ -37,5 +37,21 @@ describe("templates", () => {
 
   it("returns undefined for an unknown id", () => {
     expect(getTemplateById("does-not-exist")).toBeUndefined();
+  });
+
+  it("every template has a known difficulty", () => {
+    TEMPLATES.forEach((t) => {
+      expect(DIFFICULTIES).toContain(t.difficulty);
+    });
+  });
+
+  it("filters by difficulty within a category", () => {
+    const hard = filterTemplates("All", "Hard");
+    expect(hard.length).toBeGreaterThan(0);
+    hard.forEach((t) => expect(t.difficulty).toBe("Hard"));
+  });
+
+  it("treats 'All' difficulty as no difficulty filter", () => {
+    expect(filterTemplates("Flowers", "All")).toEqual(getTemplatesByCategory("Flowers"));
   });
 });

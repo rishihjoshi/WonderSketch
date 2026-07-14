@@ -40,6 +40,7 @@
       <video id="camera-feed" autoplay playsinline muted></video>
       <canvas id="overlay-canvas"></canvas>
       <canvas id="guide-canvas"></canvas>
+      <div id="paper-mask" class="paper-mask" aria-hidden="true"></div>
 
       <div id="camera-placeholder" class="camera-placeholder">
         <p>📷 Camera access is needed for AR tracing.</p>
@@ -70,6 +71,13 @@
         <label class="slider-label">Rotate
           <input type="range" id="rotate-slider" min="-180" max="180" value="0" />
         </label>
+      </div>
+
+      <div class="tool-group">
+        <label class="slider-label">Camera zoom
+          <input type="range" id="zoom-slider" min="100" max="300" value="100" />
+        </label>
+        <button class="tool-btn" id="btn-paper-frame" title="Paper frame (hide box edges)" aria-pressed="false">⬚</button>
       </div>
 
       <div class="tool-group">
@@ -107,6 +115,7 @@
       <div class="drawer-header"><h2>Template Library</h2><button class="close-btn" data-close>✕</button></div>
       <div class="drawer-body">
         <div class="category-tabs" id="template-categories"></div>
+        <div class="difficulty-tabs" id="template-difficulties"></div>
         <div class="template-grid" id="template-grid"></div>
       </div>
     </aside>
@@ -165,6 +174,14 @@
         <div class="settings-row">
           <span>Mirror front camera</span>
           <input type="checkbox" id="setting-mirror-front" />
+        </div>
+        <div class="settings-row">
+          <span>Lock screen orientation</span>
+          <input type="checkbox" id="setting-orientation-lock" />
+        </div>
+        <div class="settings-row">
+          <span>Paper frame thickness</span>
+          <input type="range" id="setting-frame-size" min="0" max="30" value="8" />
         </div>
         <div class="settings-row">
           <span>App version</span>

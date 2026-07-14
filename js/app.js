@@ -3,7 +3,7 @@ import * as overlay from "./overlay.js";
 import { drawGrid } from "./grid.js";
 import { drawPerspective } from "./perspective.js";
 import { renderCalligraphyImage } from "./calligraphy.js";
-import { CATEGORIES, getTemplatesByCategory, getTemplateUrl, getTemplateById } from "./templates.js";
+import { CATEGORIES, DIFFICULTIES, getTemplatesByCategory, filterTemplates, getTemplateUrl, getTemplateById } from "./templates.js";
 import { LESSONS } from "./learn.js";
 import { getTodaysChallenge, computeStreak } from "./challenges.js";
 import { getSetting, setSetting, todayString } from "./storage.js";
@@ -32,6 +32,9 @@ const btnCalligraphy = document.getElementById("btn-calligraphy");
 const btnCameraToggle = document.getElementById("btn-camera-toggle");
 const btnWakelock = document.getElementById("btn-wakelock");
 const btnSnapshot = document.getElementById("btn-snapshot");
+const zoomSlider = document.getElementById("zoom-slider");
+const btnPaperFrame = document.getElementById("btn-paper-frame");
+const paperMask = document.getElementById("paper-mask");
 
 const drawerBackdrop = document.getElementById("drawer-backdrop");
 
@@ -75,11 +78,18 @@ btnCameraToggle.addEventListener("click", async () => {
   }
 });
 
-function applyMirrorSetting() {
+let videoMirrored = false;
+
+function applyVideoTransform() {
   const mirrorFront = getSetting("mirrorFront", true);
-  const shouldMirror = camera.getFacingMode() === "user" && mirrorFront;
-  videoEl.style.transform = shouldMirror ? "scaleX(-1)" : "none";
+  videoMirrored = camera.getFacingMode() === "user" && mirrorFront;
+  const zoom = getSetting("cameraZoom", 1);
+  const sx = zoom * (videoMirrored ? -1 : 1);
+  videoEl.style.transform = `scale(${sx}, ${zoom})`;
 }
+
+// Backwards-compatible alias used across the file.
+const applyMirrorSetting = applyVideoTransform;
 
 // ---------- Overlay canvas (Fabric) ----------
 overlay.initOverlayCanvas(overlayCanvasEl, stageEl);
@@ -174,6 +184,27 @@ btnWakelock.addEventListener("click", async () => {
 
 wakelock.reacquireOnVisible(() => getSetting("wakeLock", false));
 
+// ---------- Camera zoom (crops out box walls at the edges) ----------
+zoomSlider.addEventListener("input", () => {
+  const zoom = Number(zoomSlider.value) / 100;
+  setSetting("cameraZoom", zoom);
+  applyVideoTransform();
+});
+
+// ---------- Paper frame mask (hides box edges / wall) ----------
+function applyPaperFrame() {
+  const on = getSetting("paperFrame", false);
+  const inset = getSetting("frameInset", 8);
+  paperMask.style.setProperty("--frame-inset", `${inset}%`);
+  paperMask.classList.toggle("on", on);
+  btnPaperFrame.setAttribute("aria-pressed", String(on));
+}
+
+btnPaperFrame.addEventListener("click", () => {
+  setSetting("paperFrame", !getSetting("paperFrame", false));
+  applyPaperFrame();
+});
+
 // ---------- Snapshot export ----------
 btnSnapshot.addEventListener("click", () => {
   const exportCanvas = document.createElement("canvas");
@@ -183,10 +214,11 @@ btnSnapshot.addEventListener("click", () => {
 
   if (camera.isCameraActive() && videoEl.videoWidth) {
     ctx.save();
-    if (videoEl.style.transform === "scaleX(-1)") {
-      ctx.translate(exportCanvas.width, 0);
-      ctx.scale(-1, 1);
-    }
+    const zoom = getSetting("cameraZoom", 1);
+    // Apply the same zoom + mirror the live feed uses, around the canvas centre.
+    ctx.translate(exportCanvas.width / 2, exportCanvas.height / 2);
+    ctx.scale(zoom * (videoMirrored ? -1 : 1), zoom);
+    ctx.translate(-exportCanvas.width / 2, -exportCanvas.height / 2);
     ctx.drawImage(videoEl, 0, 0, exportCanvas.width, exportCanvas.height);
     ctx.restore();
   } else {
@@ -240,8 +272,10 @@ btnCalligraphy.addEventListener("click", () => openDrawer("calligraphy"));
 
 // ---------- Template library ----------
 const templateCategoriesEl = document.getElementById("template-categories");
+const templateDifficultiesEl = document.getElementById("template-difficulties");
 const templateGridEl = document.getElementById("template-grid");
 let activeCategory = "All";
+let activeDifficulty = "All";
 
 function renderCategoryTabs() {
   const cats = ["All", ...CATEGORIES];
@@ -259,9 +293,35 @@ function renderCategoryTabs() {
   });
 }
 
+function renderDifficultyTabs() {
+  const levels = ["All", ...DIFFICULTIES];
+  templateDifficultiesEl.innerHTML = "";
+  levels.forEach((level) => {
+    const btn = document.createElement("button");
+    btn.className =
+      "difficulty-tab lvl-" + level.toLowerCase() + (level === activeDifficulty ? " active" : "");
+    btn.textContent = level;
+    btn.addEventListener("click", () => {
+      activeDifficulty = level;
+      renderDifficultyTabs();
+      renderTemplateGrid();
+    });
+    templateDifficultiesEl.appendChild(btn);
+  });
+}
+
 async function renderTemplateGrid() {
-  const templates = getTemplatesByCategory(activeCategory);
+  const templates = filterTemplates(activeCategory, activeDifficulty);
+  // Fetch favorites once instead of one DB read per card.
+  const favIds = new Set((await db.getFavorites()).map((f) => f.id));
   templateGridEl.innerHTML = "";
+  if (templates.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "hint";
+    empty.textContent = "No templates match this filter yet.";
+    templateGridEl.appendChild(empty);
+    return;
+  }
   for (const tpl of templates) {
     const card = document.createElement("div");
     card.className = "template-card";
@@ -275,11 +335,14 @@ async function renderTemplateGrid() {
     name.className = "name";
     name.textContent = tpl.name;
 
+    const badge = document.createElement("span");
+    badge.className = "diff-badge lvl-" + (tpl.difficulty || "medium").toLowerCase();
+    badge.textContent = tpl.difficulty || "";
+
     const favBtn = document.createElement("button");
     favBtn.className = "fav-toggle";
     favBtn.textContent = "★";
-    const fav = await db.isFavorite(tpl.id);
-    if (fav) favBtn.classList.add("active");
+    if (favIds.has(tpl.id)) favBtn.classList.add("active");
 
     favBtn.addEventListener("click", async (e) => {
       e.stopPropagation();
@@ -288,6 +351,7 @@ async function renderTemplateGrid() {
     });
 
     card.appendChild(favBtn);
+    card.appendChild(badge);
     card.appendChild(img);
     card.appendChild(name);
 
@@ -307,6 +371,7 @@ async function renderTemplateGrid() {
 }
 
 renderCategoryTabs();
+renderDifficultyTabs();
 renderTemplateGrid();
 
 // ---------- Learn to Draw ----------
@@ -483,10 +548,41 @@ document.querySelector('[data-panel="progress"]').addEventListener("click", rend
 // ---------- Settings ----------
 const settingWakeLock = document.getElementById("setting-wakelock");
 const settingMirrorFront = document.getElementById("setting-mirror-front");
+const settingOrientationLock = document.getElementById("setting-orientation-lock");
+const settingFrameSize = document.getElementById("setting-frame-size");
 const btnClearData = document.getElementById("btn-clear-data");
 
 settingWakeLock.checked = getSetting("wakeLock", false);
 settingMirrorFront.checked = getSetting("mirrorFront", true);
+settingOrientationLock.checked = getSetting("orientationLock", false);
+settingFrameSize.value = getSetting("frameInset", 8);
+
+async function applyOrientationLock(enable) {
+  try {
+    if (enable && screen.orientation && screen.orientation.lock) {
+      await screen.orientation.lock(screen.orientation.type);
+      return true;
+    }
+    if (!enable && screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    }
+  } catch {
+    showToast("Orientation lock needs the app installed / fullscreen.");
+    return false;
+  }
+  return enable;
+}
+
+settingOrientationLock.addEventListener("change", async () => {
+  const ok = await applyOrientationLock(settingOrientationLock.checked);
+  settingOrientationLock.checked = ok;
+  setSetting("orientationLock", ok);
+});
+
+settingFrameSize.addEventListener("input", () => {
+  setSetting("frameInset", Number(settingFrameSize.value));
+  applyPaperFrame();
+});
 
 settingWakeLock.addEventListener("change", async () => {
   if (settingWakeLock.checked) {
@@ -539,12 +635,18 @@ calligraphyApplyBtn.addEventListener("click", async () => {
 function restoreGuideSettings() {
   gridSelect.value = getSetting("grid", "none");
   perspectiveSelect.value = getSetting("perspective", "none");
+  zoomSlider.value = Math.round(getSetting("cameraZoom", 1) * 100);
+  applyPaperFrame();
 }
 
 async function init() {
   restoreGuideSettings();
   resizeGuideCanvas();
   overlay.resizeCanvas(stageEl);
+
+  if (getSetting("orientationLock", false)) {
+    applyOrientationLock(true);
+  }
 
   if (getSetting("wakeLock", false)) {
     const ok = await wakelock.enableWakeLock();

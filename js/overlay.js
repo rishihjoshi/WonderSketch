@@ -24,9 +24,21 @@ export function resizeCanvas(stageEl) {
 
 export function loadImageOverlay(url) {
   return new Promise((resolve, reject) => {
+    // Guard against a load that never fires the callback (bad/blocked URL).
+    let settled = false;
+    const timeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        reject(new Error("Image load timed out"));
+      }
+    }, 10000);
+
     fabric.Image.fromURL(
       url,
       (img) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeout);
         if (!img || !img.width) {
           reject(new Error("Failed to load image"));
           return;
