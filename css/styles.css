@@ -104,6 +104,22 @@ html, body {
   pointer-events: none;
 }
 
+/* Paper frame mask — hides box walls at the edges of the camera view.
+   A window inset by --frame-inset, with a huge box-shadow darkening everything outside it. */
+.paper-mask {
+  position: absolute;
+  top: var(--frame-inset, 8%);
+  left: var(--frame-inset, 8%);
+  right: var(--frame-inset, 8%);
+  bottom: var(--frame-inset, 8%);
+  z-index: 4;
+  pointer-events: none;
+  display: none;
+  border: 2px solid rgba(124, 92, 255, 0.55);
+  box-shadow: 0 0 0 9999px rgba(8, 6, 14, 0.96);
+}
+.paper-mask.on { display: block; }
+
 .camera-placeholder {
   position: absolute;
   top: 16px;
@@ -257,6 +273,46 @@ select, input[type="range"], textarea, input[type="text"] {
   color: #fff;
   border-color: var(--accent);
 }
+
+/* Difficulty filter */
+.difficulty-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+}
+.difficulty-tab {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.difficulty-tab.active { color: #fff; }
+.difficulty-tab.lvl-all.active { background: var(--accent); border-color: var(--accent); }
+.difficulty-tab.lvl-easy.active { background: #2fbf71; border-color: #2fbf71; }
+.difficulty-tab.lvl-medium.active { background: #e0a020; border-color: #e0a020; }
+.difficulty-tab.lvl-hard.active { background: var(--danger); border-color: var(--danger); }
+
+.diff-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: #fff;
+  background: #666;
+}
+.diff-badge.lvl-easy { background: #2fbf71; }
+.diff-badge.lvl-medium { background: #e0a020; }
+.diff-badge.lvl-hard { background: var(--danger); }
 
 .template-grid {
   display: grid;

@@ -17,7 +17,7 @@ test("opens the template library and loads a template as an overlay", async ({ p
   await page.getByRole("button", { name: "Templates" }).click();
   await expect(page.locator("aside.drawer.open h2")).toHaveText("Template Library");
 
-  await expect(page.locator(".template-card")).toHaveCount(62);
+  await expect(page.locator(".template-card")).toHaveCount(66);
 
   await page.getByRole("button", { name: "Animals" }).click();
   const animalCards = page.locator(".template-card");
@@ -26,6 +26,16 @@ test("opens the template library and loads a template as an overlay", async ({ p
   await animalCards.first().click();
   await expect(page.locator("#stage-toast")).toBeVisible();
   await expect(page.locator("aside.drawer.open")).toHaveCount(0);
+});
+
+test("difficulty filter narrows the template library to a level", async ({ page }) => {
+  await page.getByRole("button", { name: "Templates" }).click();
+  await expect(page.locator(".template-card")).toHaveCount(66);
+
+  await page.locator("#template-difficulties").getByRole("button", { name: "Hard" }).click();
+  const cards = page.locator(".template-card");
+  await expect(cards).toHaveCount(20);
+  await expect(page.locator(".diff-badge.lvl-hard").first()).toBeVisible();
 });
 
 test("grid and perspective guide selectors render onto the guide canvas", async ({ page }) => {
