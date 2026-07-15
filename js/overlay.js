@@ -3,8 +3,13 @@
 let canvas = null;
 let activeImage = null;
 let defaultState = null;
+let stageElRef = null;
+// Remember the last opacity the user chose so new templates keep it (tracing
+// works best at a faint, consistent opacity — don't reset it every load).
+let lastOpacity = 0.6;
 
 export function initOverlayCanvas(canvasEl, stageEl) {
+  stageElRef = stageEl;
   canvas = new fabric.Canvas(canvasEl, {
     backgroundColor: "transparent",
     preserveObjectStacking: true,
@@ -16,10 +21,30 @@ export function initOverlayCanvas(canvasEl, stageEl) {
 
 export function resizeCanvas(stageEl) {
   if (!canvas) return;
-  const { clientWidth, clientHeight } = stageEl;
-  canvas.setWidth(clientWidth);
-  canvas.setHeight(clientHeight);
+  if (stageEl) stageElRef = stageEl;
+  const el = stageEl || stageElRef;
+  if (!el) return;
+  canvas.setWidth(el.clientWidth);
+  canvas.setHeight(el.clientHeight);
   canvas.renderAll();
+}
+
+// Usable canvas dimensions, falling back to the stage/window if the fabric
+// canvas hasn't been sized yet (avoids scaling a freshly loaded image to 0).
+function canvasDims() {
+  let w = canvas.getWidth();
+  let h = canvas.getHeight();
+  if (!w || !h) {
+    if (stageElRef && stageElRef.clientWidth) {
+      resizeCanvas(stageElRef);
+      w = canvas.getWidth();
+      h = canvas.getHeight();
+    }
+  }
+  return {
+    w: w || (stageElRef && stageElRef.clientWidth) || window.innerWidth || 800,
+    h: h || (stageElRef && stageElRef.clientHeight) || window.innerHeight || 600,
+  };
 }
 
 export function loadImageOverlay(url) {
@@ -46,20 +71,29 @@ export function loadImageOverlay(url) {
         if (activeImage) {
           canvas.remove(activeImage);
         }
-        const maxDim = Math.min(canvas.getWidth(), canvas.getHeight()) * 0.8;
+        const { w, h } = canvasDims();
+        const maxDim = Math.min(w, h) * 0.8;
         const scale = Math.min(maxDim / img.width, maxDim / img.height, 1.5);
 
         img.set({
-          left: canvas.getWidth() / 2,
-          top: canvas.getHeight() / 2,
+          left: w / 2,
+          top: h / 2,
           originX: "center",
           originY: "center",
-          opacity: 0.6,
+          opacity: lastOpacity,
           scaleX: scale,
           scaleY: scale,
           angle: 0,
           flipX: false,
           flipY: false,
+          // A freshly loaded image is always movable — clear any prior lock.
+          lockMovementX: false,
+          lockMovementY: false,
+          lockRotation: false,
+          lockScalingX: false,
+          lockScalingY: false,
+          hasControls: true,
+          selectable: true,
         });
 
         canvas.add(img);
@@ -83,6 +117,7 @@ export function loadImageOverlay(url) {
 }
 
 export function setOpacity(value) {
+  lastOpacity = value;
   if (!activeImage) return;
   activeImage.set("opacity", value);
   canvas.renderAll();
@@ -153,5 +188,9 @@ export function getCurrentRotation() {
 }
 
 export function getCurrentOpacity() {
-  return activeImage ? activeImage.opacity : 0.6;
+  return activeImage ? activeImage.opacity : lastOpacity;
+}
+
+export function isLocked() {
+  return !!(activeImage && activeImage.lockMovementX);
 }

@@ -82,8 +82,13 @@ btnCameraToggle.addEventListener("click", async () => {
 let videoMirrored = false;
 
 function applyVideoTransform() {
-  const mirrorFront = getSetting("mirrorFront", true);
-  videoMirrored = camera.getFacingMode() === "user" && mirrorFront;
+  const facing = camera.getFacingMode();
+  // Front camera mirrors by default (selfie view); the down-facing rear camera
+  // in a tracing box can also read reversed vs the hand, so it has its own toggle.
+  videoMirrored =
+    facing === "user"
+      ? getSetting("mirrorFront", true)
+      : getSetting("mirrorRear", false);
   const zoom = getSetting("cameraZoom", 1);
   const sx = zoom * (videoMirrored ? -1 : 1);
   videoEl.style.transform = `scale(${sx}, ${zoom})`;
@@ -99,20 +104,38 @@ overlay.initOverlayCanvas(overlayCanvasEl, stageEl);
 const guideCtx = guideCanvasEl.getContext("2d");
 
 function resizeGuideCanvas() {
-  guideCanvasEl.width = stageEl.clientWidth;
-  guideCanvasEl.height = stageEl.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  // Backing store at device resolution (crisp on hi-dpi tablets), CSS size 100%.
+  guideCanvasEl.width = stageEl.clientWidth * dpr;
+  guideCanvasEl.height = stageEl.clientHeight * dpr;
+  guideCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
   redrawGuides();
 }
 
 function redrawGuides() {
-  const w = guideCanvasEl.width;
-  const h = guideCanvasEl.height;
+  // Draw in CSS pixels; the context is pre-scaled by devicePixelRatio.
+  const w = stageEl.clientWidth;
+  const h = stageEl.clientHeight;
   guideCtx.clearRect(0, 0, w, h);
   drawGrid(guideCtx, w, h, gridSelect.value);
   drawPerspective(guideCtx, w, h, perspectiveSelect.value);
 }
 
+function sizeCanvases() {
+  resizeGuideCanvas();
+  overlay.resizeCanvas(stageEl);
+}
+
 window.addEventListener("resize", resizeGuideCanvas);
+
+// Re-size canvases whenever the stage actually changes size — covers cold-start
+// layout races, orientation changes, toolbar wrapping and PWA chrome settling.
+// (Without this, a canvas sized while the stage was 0px stays 0px until a window
+// resize, leaving the overlay + guides invisible.)
+if ("ResizeObserver" in window) {
+  const stageObserver = new ResizeObserver(() => sizeCanvases());
+  stageObserver.observe(stageEl);
+}
 gridSelect.addEventListener("change", () => {
   setSetting("grid", gridSelect.value);
   redrawGuides();
@@ -141,6 +164,10 @@ importInput.addEventListener("change", async (e) => {
 function syncOverlayControls() {
   opacitySlider.value = Math.round(overlay.getCurrentOpacity() * 100);
   rotateSlider.value = Math.round(overlay.getCurrentRotation());
+  // Keep the lock button in sync with the actual overlay state.
+  const locked = overlay.isLocked();
+  btnLock.setAttribute("aria-pressed", String(locked));
+  btnLock.textContent = locked ? "🔓" : "🔒";
 }
 
 opacitySlider.addEventListener("input", () => {
@@ -207,40 +234,66 @@ btnPaperFrame.addEventListener("click", () => {
 });
 
 // ---------- Snapshot export ----------
+// Draw a source (image/canvas) into ctx as object-fit: cover, so the export
+// matches the on-screen crop. Skips zero-size sources instead of throwing.
+function drawCover(ctx, source, sw, sh, dw, dh, zoom = 1, mirror = false) {
+  if (!sw || !sh || !dw || !dh) return;
+  const scale = Math.max(dw / sw, dh / sh) * zoom;
+  const w = sw * scale;
+  const h = sh * scale;
+  ctx.save();
+  ctx.translate(dw / 2, dh / 2);
+  if (mirror) ctx.scale(-1, 1);
+  ctx.drawImage(source, -w / 2, -h / 2, w, h);
+  ctx.restore();
+}
+
 btnSnapshot.addEventListener("click", () => {
-  const exportCanvas = document.createElement("canvas");
-  exportCanvas.width = stageEl.clientWidth;
-  exportCanvas.height = stageEl.clientHeight;
-  const ctx = exportCanvas.getContext("2d");
+  try {
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = stageEl.clientWidth;
+    exportCanvas.height = stageEl.clientHeight;
+    if (!exportCanvas.width || !exportCanvas.height) {
+      showToast("Nothing to export yet.");
+      return;
+    }
+    const ctx = exportCanvas.getContext("2d");
+    const dw = exportCanvas.width;
+    const dh = exportCanvas.height;
 
-  if (camera.isCameraActive() && videoEl.videoWidth) {
-    ctx.save();
-    const zoom = getSetting("cameraZoom", 1);
-    // Apply the same zoom + mirror the live feed uses, around the canvas centre.
-    ctx.translate(exportCanvas.width / 2, exportCanvas.height / 2);
-    ctx.scale(zoom * (videoMirrored ? -1 : 1), zoom);
-    ctx.translate(-exportCanvas.width / 2, -exportCanvas.height / 2);
-    ctx.drawImage(videoEl, 0, 0, exportCanvas.width, exportCanvas.height);
-    ctx.restore();
-  } else {
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+    if (camera.isCameraActive() && videoEl.videoWidth) {
+      const zoom = getSetting("cameraZoom", 1);
+      // Match the live preview: object-fit cover + the same zoom & mirror.
+      drawCover(ctx, videoEl, videoEl.videoWidth, videoEl.videoHeight, dw, dh, zoom, videoMirrored);
+    } else {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, dw, dh);
+    }
+
+    const fabricCanvas = overlay.getCanvas();
+    const lower = fabricCanvas && fabricCanvas.lowerCanvasEl;
+    if (lower && lower.width && lower.height) {
+      ctx.drawImage(lower, 0, 0, dw, dh);
+    }
+    if (guideCanvasEl.width && guideCanvasEl.height) {
+      ctx.drawImage(guideCanvasEl, 0, 0, dw, dh);
+    }
+
+    exportCanvas.toBlob((blob) => {
+      if (!blob) {
+        showToast("Could not export the practice sheet.");
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `wondersketch-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  } catch {
+    showToast("Could not export the practice sheet.");
   }
-
-  const fabricCanvas = overlay.getCanvas();
-  if (fabricCanvas) {
-    ctx.drawImage(fabricCanvas.lowerCanvasEl, 0, 0, exportCanvas.width, exportCanvas.height);
-  }
-  ctx.drawImage(guideCanvasEl, 0, 0, exportCanvas.width, exportCanvas.height);
-
-  exportCanvas.toBlob((blob) => {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `wondersketch-${Date.now()}.png`;
-    a.click();
-    URL.revokeObjectURL(url);
-  });
 });
 
 // ---------- Drawer / panel system ----------
@@ -549,12 +602,14 @@ document.querySelector('[data-panel="progress"]').addEventListener("click", rend
 // ---------- Settings ----------
 const settingWakeLock = document.getElementById("setting-wakelock");
 const settingMirrorFront = document.getElementById("setting-mirror-front");
+const settingMirrorRear = document.getElementById("setting-mirror-rear");
 const settingOrientationLock = document.getElementById("setting-orientation-lock");
 const settingFrameSize = document.getElementById("setting-frame-size");
 const btnClearData = document.getElementById("btn-clear-data");
 
 settingWakeLock.checked = getSetting("wakeLock", false);
 settingMirrorFront.checked = getSetting("mirrorFront", true);
+settingMirrorRear.checked = getSetting("mirrorRear", false);
 settingOrientationLock.checked = getSetting("orientationLock", false);
 settingFrameSize.value = getSetting("frameInset", 8);
 
@@ -600,7 +655,12 @@ settingWakeLock.addEventListener("change", async () => {
 
 settingMirrorFront.addEventListener("change", () => {
   setSetting("mirrorFront", settingMirrorFront.checked);
-  applyMirrorSetting();
+  applyVideoTransform();
+});
+
+settingMirrorRear.addEventListener("change", () => {
+  setSetting("mirrorRear", settingMirrorRear.checked);
+  applyVideoTransform();
 });
 
 btnClearData.addEventListener("click", async () => {
@@ -676,8 +736,10 @@ function restoreGuideSettings() {
 
 async function init() {
   restoreGuideSettings();
-  resizeGuideCanvas();
-  overlay.resizeCanvas(stageEl);
+  sizeCanvases();
+  // Re-size after first paint in case the stage had no layout size yet at init
+  // (cold PWA launch) — otherwise the guide canvas can stay 0px until a resize.
+  requestAnimationFrame(sizeCanvases);
 
   if (getSetting("orientationLock", false)) {
     applyOrientationLock(true);

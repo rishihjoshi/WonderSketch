@@ -38,6 +38,23 @@ test("difficulty filter narrows the template library to a level", async ({ page 
   await expect(page.locator(".diff-badge.lvl-hard").first()).toBeVisible();
 });
 
+test("lock button resets and opacity persists across template loads", async ({ page }) => {
+  await page.locator("#opacity-slider").fill("25");
+
+  await page.getByRole("button", { name: "Templates" }).click();
+  await page.locator("#template-grid .template-card").first().click();
+
+  await page.locator("#btn-lock").click();
+  await expect(page.locator("#btn-lock")).toHaveAttribute("aria-pressed", "true");
+
+  // Loading a new template must reset the lock UI and keep the chosen opacity.
+  await page.getByRole("button", { name: "Templates" }).click();
+  await page.locator("#template-grid .template-card").nth(1).click();
+
+  await expect(page.locator("#btn-lock")).toHaveAttribute("aria-pressed", "false");
+  await expect(page.locator("#opacity-slider")).toHaveValue("25");
+});
+
 test("grid and perspective guide selectors render onto the guide canvas", async ({ page }) => {
   await page.locator("#grid-select").selectOption("6x6");
   await page.locator("#perspective-select").selectOption("2pt");

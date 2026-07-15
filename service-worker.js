@@ -1,5 +1,5 @@
 // Keep APP_VERSION in sync with js/version.js and version.json on every release.
-const APP_VERSION = "1.0.1";
+const APP_VERSION = "1.0.2";
 const CACHE_NAME = `wondersketch-${APP_VERSION}`;
 
 const PRECACHE_URLS = [

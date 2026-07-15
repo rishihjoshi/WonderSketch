@@ -9,7 +9,7 @@
 // reporting its OLD version until the user refreshes. version.json is always
 // fetched fresh from the network, so comparing the two reveals a pending update.
 
-export const APP_VERSION = "1.0.1";
+export const APP_VERSION = "1.0.2";
 
 const VERSION_URL = "version.json";
 
