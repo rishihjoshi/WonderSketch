@@ -91,34 +91,36 @@ html, body {
   z-index: 1;
 }
 
-#overlay-canvas, #guide-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-
-#guide-canvas {
-  z-index: 3;
-  pointer-events: none;
-}
-
 /* Paper frame mask — hides box walls at the edges of the camera view.
-   A window inset by --frame-inset, with a huge box-shadow darkening everything outside it. */
+   A window inset by --frame-inset, with a huge box-shadow darkening everything outside it.
+   Sits above the camera feed (z1) but below the overlay + guides so it only masks
+   the camera, never the template lines the child is tracing. */
 .paper-mask {
   position: absolute;
   top: var(--frame-inset, 8%);
   left: var(--frame-inset, 8%);
   right: var(--frame-inset, 8%);
   bottom: var(--frame-inset, 8%);
-  z-index: 4;
+  z-index: 2;
   pointer-events: none;
   display: none;
   border: 2px solid rgba(124, 92, 255, 0.55);
   box-shadow: 0 0 0 9999px rgba(8, 6, 14, 0.96);
 }
 .paper-mask.on { display: block; }
+
+#overlay-canvas, #guide-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+#guide-canvas {
+  z-index: 4;
+  pointer-events: none;
+}
 
 .camera-placeholder {
   position: absolute;
