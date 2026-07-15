@@ -1,6 +1,6 @@
 {
   "name": "wondersketch-ar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "WonderSketch AR - offline-first PWA for AR drawing tracing",
   "type": "module",

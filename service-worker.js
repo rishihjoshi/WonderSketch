@@ -1,4 +1,6 @@
-const CACHE_NAME = "wondersketch-v9";
+// Keep APP_VERSION in sync with js/version.js and version.json on every release.
+const APP_VERSION = "1.0.1";
+const CACHE_NAME = `wondersketch-${APP_VERSION}`;
 
 const PRECACHE_URLS = [
   "./",
@@ -6,6 +8,7 @@ const PRECACHE_URLS = [
   "./manifest.webmanifest",
   "./css/styles.css",
   "./js/app.js",
+  "./js/version.js",
   "./js/camera.js",
   "./js/overlay.js",
   "./js/grid.js",
@@ -103,7 +106,14 @@ const PRECACHE_URLS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)).then(() => self.skipWaiting())
+    caches
+      .open(CACHE_NAME)
+      // Use {cache: "reload"} so precached files are pulled from the network,
+      // never from the HTTP cache — otherwise an "update" can re-cache stale files.
+      .then((cache) =>
+        Promise.all(PRECACHE_URLS.map((url) => cache.add(new Request(url, { cache: "reload" }))))
+      )
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -118,6 +128,17 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
+
+  // version.json must always come from the network so update checks are accurate.
+  // Never cache it; fall back to a null version when offline (so no false update prompt).
+  if (new URL(request.url).pathname.endsWith("version.json")) {
+    event.respondWith(
+      fetch(request, { cache: "no-store" }).catch(
+        () => new Response('{"version":null}', { headers: { "Content-Type": "application/json" } })
+      )
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then((cached) => {
