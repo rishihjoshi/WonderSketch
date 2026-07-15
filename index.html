@@ -20,6 +20,12 @@
 <body>
   <div id="app">
 
+    <!-- Update banner (shown when the deployed version differs from this app) -->
+    <div id="update-banner" class="update-banner" hidden role="alert">
+      <span id="update-banner-text">A new version is available.</span>
+      <button id="btn-refresh-update" class="primary-btn">Refresh</button>
+    </div>
+
     <!-- Top bar -->
     <header class="topbar">
       <div class="brand">
@@ -187,6 +193,7 @@
           <span>App version</span>
           <span id="app-version">1.0.0</span>
         </div>
+        <button class="primary-btn" id="btn-check-updates">Check for Updates</button>
         <button class="primary-btn danger" id="btn-clear-data">Clear All Local Data</button>
         <p class="hint">All your data (favorites, progress, settings) is stored only on this device.</p>
       </div>

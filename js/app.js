@@ -9,6 +9,7 @@ import { getTodaysChallenge, computeStreak } from "./challenges.js";
 import { getSetting, setSetting, todayString } from "./storage.js";
 import * as wakelock from "./wakelock.js";
 import * as db from "./db.js";
+import { APP_VERSION, fetchLatestVersion, isUpdateAvailable, forceRefresh } from "./version.js";
 
 // ---------- DOM references ----------
 const stageEl = document.getElementById("stage");
@@ -631,6 +632,40 @@ calligraphyApplyBtn.addEventListener("click", async () => {
   }
 });
 
+// ---------- App version / update check ----------
+const updateBanner = document.getElementById("update-banner");
+const updateBannerText = document.getElementById("update-banner-text");
+const btnRefreshUpdate = document.getElementById("btn-refresh-update");
+const btnCheckUpdates = document.getElementById("btn-check-updates");
+const appVersionEl = document.getElementById("app-version");
+
+appVersionEl.textContent = APP_VERSION;
+
+async function checkForUpdate({ manual = false } = {}) {
+  let latest;
+  try {
+    latest = await fetchLatestVersion();
+  } catch {
+    if (manual) showToast("Couldn't check for updates. Are you online?");
+    return;
+  }
+  if (isUpdateAvailable(APP_VERSION, latest)) {
+    updateBannerText.textContent = `New version ${latest} available — tap Refresh to update.`;
+    updateBanner.hidden = false;
+  } else {
+    updateBanner.hidden = true;
+    if (manual) showToast(`You're up to date (v${APP_VERSION}).`);
+  }
+}
+
+btnRefreshUpdate.addEventListener("click", async () => {
+  btnRefreshUpdate.disabled = true;
+  updateBannerText.textContent = "Updating…";
+  await forceRefresh();
+});
+
+btnCheckUpdates.addEventListener("click", () => checkForUpdate({ manual: true }));
+
 // ---------- Init ----------
 function restoreGuideSettings() {
   gridSelect.value = getSetting("grid", "none");
@@ -662,6 +697,8 @@ async function init() {
       /* offline support unavailable */
     }
   }
+
+  checkForUpdate();
 }
 
 init();
